@@ -36,3 +36,11 @@ FleetMgmt.Identity/Services/FleetMgmt.Identity.Services/obj
 /FleetMgmt.Identity/Database/FleetMgmt.Identity.DB/FleetMgmt.Identity.DB.jfm
 /FleetMgmt.Identity/Database/FleetMgmt.Identity.DB/FleetMgmt.Identity.DB.dbmdl
 /FleetMgmt.Identity/Domain/FleetMgmt.Identity.Domain/FleetMgmt.Identity.Domain.csproj.user
+FleetMgmt.Identity/.vscode/launch.json
+FleetMgmt.Identity/.vscode/tasks.json
+
+FleetMgmt.Identity/.idea/.idea.FleetMgmt.Identity/riderModule.iml
+
+FleetMgmt.Identity/.idea/.idea.FleetMgmt.Identity/.idea/encodings.xml
+
+FleetMgmt.Identity/.idea/.idea.FleetMgmt.Identity/.idea/
