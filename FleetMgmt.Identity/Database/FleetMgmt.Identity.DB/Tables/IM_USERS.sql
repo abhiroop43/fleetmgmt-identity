@@ -1,0 +1,25 @@
+﻿CREATE TABLE [IM].[IM_USERS] (
+    [ID]                      VARCHAR (36)   NOT NULL,
+    [FIRSTNAME]                NVARCHAR (255) NOT NULL,
+    [LASTNAME]                NVARCHAR (255) NULL,
+    [USERNAME]                NVARCHAR (320) NOT NULL,
+    [USEREMAIL]               NVARCHAR (320) NOT NULL,
+    [PASSWORD]                NVARCHAR (100) NOT NULL,
+    [TELEPHONE]               VARCHAR (20)   NULL,
+    [MOBILE]                  VARCHAR (20)   NULL,
+    [ADDRESS]                 VARCHAR (255)  NULL,
+    [ADDRESS1]                VARCHAR (255)  NULL,
+    [ADDRESS2]                VARCHAR (255)  NULL,
+    [REMARKS]                 NVARCHAR (255) NULL,
+    [ISINTERNAL] BIT          DEFAULT ((0)) NOT NULL,
+    [ACTIVE]                  BIT            DEFAULT ((1)) NOT NULL,
+    [CREATEDBY]               NVARCHAR (200) DEFAULT ('SYS-ADMIN') NOT NULL,
+    [CREATEDDATE]             DATETIME       DEFAULT (getdate()) NOT NULL,
+    [UPDATEDBY]               NVARCHAR (200) NULL,
+    [UPDATEDDATE]             DATETIME       NULL,
+    [TERMS_ACCEPTED]          BIT           NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [Unique_Constaint_IM_USERS_USEREMAIL] UNIQUE NONCLUSTERED ([USEREMAIL] ASC),
+    CONSTRAINT [Unique_Constaint_IM_USERS_USERNAME] UNIQUE NONCLUSTERED ([USERNAME] ASC)
+);
+

@@ -1,0 +1,38 @@
+
+# .vs folder
+FleetMgmt.Identity/.vs
+
+# API
+FleetMgmt.Identity/API/FleetMgmt.Identity.API/bin
+FleetMgmt.Identity/API/FleetMgmt.Identity.API/obj
+
+# Api Gateway
+FleetMgmt.Identity/Api Gateway/FleetMgmt.Identity.Gateway/bin
+FleetMgmt.Identity/Api Gateway/FleetMgmt.Identity.Gateway/obj
+
+# Database
+FleetMgmt.Identity/Database/FleetMgmt.Identity.DB/bin
+FleetMgmt.Identity/Database/FleetMgmt.Identity.DB/obj
+
+# Domain
+FleetMgmt.Identity/Domain/FleetMgmt.Identity.Domain/bin
+FleetMgmt.Identity/Domain/FleetMgmt.Identity.Domain/obj
+
+# Infrastructure
+FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.Infrastructure/bin
+FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.Infrastructure/obj
+
+# Service Interfaces
+FleetMgmt.Identity/Service Interfaces/FleetMgmt.Identity.Interfaces/bin
+FleetMgmt.Identity/Service Interfaces/FleetMgmt.Identity.Interfaces/obj
+
+# Services
+FleetMgmt.Identity/Services/FleetMgmt.Identity.Services/bin
+FleetMgmt.Identity/Services/FleetMgmt.Identity.Services/obj
+/FleetMgmt.Identity/API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj.user
+/FleetMgmt.Identity/API/FleetMgmt.Identity.API/Properties/launchSettings.json
+/FleetMgmt.Identity/Api Gateway/FleetMgmt.Identity.Gateway/Properties/launchSettings.json
+/FleetMgmt.Identity/Database/FleetMgmt.Identity.DB/FleetMgmt.Identity.DB.sqlproj.user
+/FleetMgmt.Identity/Database/FleetMgmt.Identity.DB/FleetMgmt.Identity.DB.jfm
+/FleetMgmt.Identity/Database/FleetMgmt.Identity.DB/FleetMgmt.Identity.DB.dbmdl
+/FleetMgmt.Identity/Domain/FleetMgmt.Identity.Domain/FleetMgmt.Identity.Domain.csproj.user

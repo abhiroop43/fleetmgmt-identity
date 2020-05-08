@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{291EA581-A900-45ED-8E93-1B29F11F7ABB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetMgmt.Identity.Domain", "Domain\FleetMgmt.Identity.Domain\FleetMgmt.Identity.Domain.csproj", "{6A2226B9-BAB2-4938-A124-3E8C54779C33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{A7A35FB0-A563-43C3-A006-E670D3634A5C}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FleetMgmt.Identity.DB", "Database\FleetMgmt.Identity.DB\FleetMgmt.Identity.DB.sqlproj", "{04C70744-2238-4312-B628-EEB027B79150}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{82A1203B-6A2A-4008-B5A1-1E40DD124317}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetMgmt.Identity.Infrastructure", "Infrastructure\FleetMgmt.Identity.Infrastructure\FleetMgmt.Identity.Infrastructure.csproj", "{74B4D360-92DD-4D93-A656-FB7045ECD5FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service Interfaces", "Service Interfaces", "{3585B893-54A0-476C-8055-087A08396EF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetMgmt.Identity.Interfaces", "Service Interfaces\FleetMgmt.Identity.Interfaces\FleetMgmt.Identity.Interfaces.csproj", "{416622E5-D665-422C-AE7B-D1E8C3D99AAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A72BBB00-C8EA-4AF6-84A8-ABB3C8447E1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetMgmt.Identity.Services", "Services\FleetMgmt.Identity.Services\FleetMgmt.Identity.Services.csproj", "{3D971726-A43B-4E8A-8810-41E35593B64F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{B14D3A34-7E2F-48C4-8EBA-BEC23B298675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetMgmt.Identity.API", "API\FleetMgmt.Identity.API\FleetMgmt.Identity.API.csproj", "{1AF8FCF9-B712-4A1D-A0F8-91B30E259583}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api Gateway", "Api Gateway", "{42316A2B-329D-4119-BAF9-EA716DA4F14B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetMgmt.Identity.Gateway", "Api Gateway\FleetMgmt.Identity.Gateway\FleetMgmt.Identity.Gateway.csproj", "{25FC47AF-8A53-422B-89EF-5F48DE72784F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A2226B9-BAB2-4938-A124-3E8C54779C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A2226B9-BAB2-4938-A124-3E8C54779C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A2226B9-BAB2-4938-A124-3E8C54779C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A2226B9-BAB2-4938-A124-3E8C54779C33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C70744-2238-4312-B628-EEB027B79150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C70744-2238-4312-B628-EEB027B79150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C70744-2238-4312-B628-EEB027B79150}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{04C70744-2238-4312-B628-EEB027B79150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C70744-2238-4312-B628-EEB027B79150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C70744-2238-4312-B628-EEB027B79150}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{74B4D360-92DD-4D93-A656-FB7045ECD5FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B4D360-92DD-4D93-A656-FB7045ECD5FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B4D360-92DD-4D93-A656-FB7045ECD5FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B4D360-92DD-4D93-A656-FB7045ECD5FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{416622E5-D665-422C-AE7B-D1E8C3D99AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{416622E5-D665-422C-AE7B-D1E8C3D99AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{416622E5-D665-422C-AE7B-D1E8C3D99AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{416622E5-D665-422C-AE7B-D1E8C3D99AAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D971726-A43B-4E8A-8810-41E35593B64F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D971726-A43B-4E8A-8810-41E35593B64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D971726-A43B-4E8A-8810-41E35593B64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D971726-A43B-4E8A-8810-41E35593B64F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AF8FCF9-B712-4A1D-A0F8-91B30E259583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AF8FCF9-B712-4A1D-A0F8-91B30E259583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AF8FCF9-B712-4A1D-A0F8-91B30E259583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AF8FCF9-B712-4A1D-A0F8-91B30E259583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25FC47AF-8A53-422B-89EF-5F48DE72784F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25FC47AF-8A53-422B-89EF-5F48DE72784F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25FC47AF-8A53-422B-89EF-5F48DE72784F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25FC47AF-8A53-422B-89EF-5F48DE72784F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A2226B9-BAB2-4938-A124-3E8C54779C33} = {291EA581-A900-45ED-8E93-1B29F11F7ABB}
+		{04C70744-2238-4312-B628-EEB027B79150} = {A7A35FB0-A563-43C3-A006-E670D3634A5C}
+		{74B4D360-92DD-4D93-A656-FB7045ECD5FD} = {82A1203B-6A2A-4008-B5A1-1E40DD124317}
+		{416622E5-D665-422C-AE7B-D1E8C3D99AAE} = {3585B893-54A0-476C-8055-087A08396EF5}
+		{3D971726-A43B-4E8A-8810-41E35593B64F} = {A72BBB00-C8EA-4AF6-84A8-ABB3C8447E1E}
+		{1AF8FCF9-B712-4A1D-A0F8-91B30E259583} = {B14D3A34-7E2F-48C4-8EBA-BEC23B298675}
+		{25FC47AF-8A53-422B-89EF-5F48DE72784F} = {42316A2B-329D-4119-BAF9-EA716DA4F14B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {612829F6-A023-4179-BAF7-8E028349A862}
+	EndGlobalSection
+EndGlobal
