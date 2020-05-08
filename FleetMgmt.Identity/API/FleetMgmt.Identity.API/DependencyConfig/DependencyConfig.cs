@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FleetMgmt.Identity.Domain.Interfaces;
+using FleetMgmt.Identity.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SD.BuildingBlocks.Infrastructure;
+using SD.BuildingBlocks.Repository;
 
 namespace FleetMgmt.Identity.API.DependencyConfig
 {
@@ -31,7 +34,14 @@ namespace FleetMgmt.Identity.API.DependencyConfig
 
         private void InjectRepositories()
         {
-
+            _services.AddScoped<ICompanyRepository, CompanyRepository>();
+            _services.AddScoped<IGroupsOuRepository, GroupsOuRepository>();
+            _services.AddScoped<IGroupsRepository, GroupsRepository>();
+            _services.AddScoped<IOuRepository, OuRepository>();
+            _services.AddScoped<ITokenControllerRepository, TokenControllerRepository>();
+            _services.AddScoped<IUserMetadataRepository, UserMetadataRepository>();
+            _services.AddScoped<IUserRepository, UserRepository>();
+            _services.AddScoped<IUsersGroupsRepository, UsersGroupsRepository>();
         }
 
         private void InjectUtilities()

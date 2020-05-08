@@ -1,25 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using FleetMgmt.Identity.API.DependencyConfig;
 using FleetMgmt.Identity.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MG.CodeArchitecture.API
+namespace FleetMgmt.Identity.API
 {
     public class Startup
     {
@@ -33,16 +24,6 @@ namespace MG.CodeArchitecture.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("default", policy =>
-                {
-                    policy
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowAnyOrigin();
-                });
-            });
             services.AddMvc();
 
             var audienceConfig = Configuration.GetSection("Audience");
@@ -60,6 +41,15 @@ namespace MG.CodeArchitecture.API
                 ClockSkew = TimeSpan.Zero,
                 RequireExpirationTime = true,
             };
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowAllOrigin", options => options.SetIsOriginAllowed(_ => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                );
+            });
 
             services.AddAuthentication(options =>
                 {
@@ -79,15 +69,13 @@ namespace MG.CodeArchitecture.API
                             .GetConnectionString("DatabaseConnection")));
 
 
-            DependencyConfig dependency = new DependencyConfig(services, Configuration);
+            DependencyConfig.DependencyConfig dependency = new DependencyConfig.DependencyConfig(services, Configuration);
             dependency.ConfigureServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors("default");
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -95,7 +83,7 @@ namespace MG.CodeArchitecture.API
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
+                // app.UseHsts();
             }
 
             // app.UseHttpsRedirection();
@@ -103,7 +91,8 @@ namespace MG.CodeArchitecture.API
 
             app.UseRouting();
             app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseCors("AllowAllOrigin");
+            // app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "api/{controller}/{id}");

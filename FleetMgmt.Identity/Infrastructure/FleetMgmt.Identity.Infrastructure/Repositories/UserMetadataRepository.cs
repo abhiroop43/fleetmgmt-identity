@@ -5,9 +5,9 @@ using SD.BuildingBlocks.Repository;
 
 namespace FleetMgmt.Identity.Infrastructure.Repositories
 {
-    public class CompanyRepository : RepositoryEF<IM_COMPANY>, ICompanyRepository
+    public class UserMetadataRepository : RepositoryEF<IM_USER_METADATA>, IUserMetadataRepository
     {
-        public CompanyRepository(FleetMgmtIdentityDbContext dbContext) : base(dbContext)
+        public UserMetadataRepository(FleetMgmtIdentityDbContext dbContext) : base(dbContext)
         {
         }
     }

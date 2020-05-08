@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MG.CodeArchitecture.Interfaces
+﻿namespace FleetMgmt.Identity.Interfaces
 {
     public class Class1
     {
