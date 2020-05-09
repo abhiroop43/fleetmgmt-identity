@@ -13,8 +13,8 @@ using Microsoft.Extensions.Logging;
 
 namespace FleetMgmt.Identity.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class LoginController : IdentityBaseController<LoginController>
     {
         private readonly ILoginService _loginService;

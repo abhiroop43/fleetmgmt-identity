@@ -1,5 +1,7 @@
 ﻿using FleetMgmt.Identity.Domain.Interfaces;
 using FleetMgmt.Identity.Infrastructure.Repositories;
+using FleetMgmt.Identity.Interfaces;
+using FleetMgmt.Identity.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +31,8 @@ namespace FleetMgmt.Identity.API.DependencyConfig
 
         private void InjectServices()
         {
-
+            _services.AddScoped<ILoginService, LoginService>();
+            _services.AddScoped<IRegistrationService, RegistrationService>();
         }
 
         private void InjectRepositories()

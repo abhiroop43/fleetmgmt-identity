@@ -30,7 +30,7 @@ namespace FleetMgmt.Identity.Services
             
             request.FirstName = request.FirstName?.TitleCase();
             request.LastName = request.LastName?.TitleCase();
-            request.UserName = request.UserEmail?.LowerCase();
+            request.UserName = request.UserName?.LowerCase();
             request.Password = _encryptData.EncryptPassword(request.Password);
             request.UserEmail = request.UserEmail?.LowerCase();
             request.Remarks = request.Remarks?.TitleCase();
@@ -45,11 +45,26 @@ namespace FleetMgmt.Identity.Services
 
             user.CreatedBy = "SYSTEM";
             user.CreatedDate = DateTime.Now;
+            user.ID = Guid.NewGuid().ToString();
             
             _transactionalUnitOfWork.SetIsActive(true);
 
             _userRepository.Add(user);
-            await _transactionalUnitOfWork.CommitAsync();
+            
+            // TODO: Add user to group //
+            
+            var committedRows =  await _transactionalUnitOfWork.CommitAsync();
+
+            if (committedRows > 0)
+            {
+                response.Success = true;
+                response.Msg = "User registered successfully";
+            }
+            else
+            {
+                response.Success = false;
+                response.Msg = "Failed to register user";
+            }
             
             return await Task.Run(() => response);
         }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace FleetMgmt.Identity.API
 {
@@ -26,7 +27,7 @@ namespace FleetMgmt.Identity.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            // services.AddMvc(options => options.EnableEndpointRouting = false);
 
             var audienceConfig = Configuration.GetSection("Audience");
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(audienceConfig["Secret"]));
@@ -75,7 +76,14 @@ namespace FleetMgmt.Identity.API
             
             services.AddAutoMapper(typeof(Mapping));
             
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fleet Management API", Version = "v1" });
+            });
+            
             dependency.ConfigureServices();
+            services.AddControllers();
+            // services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,16 +101,23 @@ namespace FleetMgmt.Identity.API
 
             // app.UseHttpsRedirection();
             // app.UseMvc();
+            
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fleet Management API V1");
+            });
+
 
             app.UseRouting();
-            app.UseAuthentication();
             app.UseCors("AllowAllOrigin");
-            // app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute("default", "api/{controller}/{id}");
-                // endpoints.MapHealthChecks("/health");
-            });
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

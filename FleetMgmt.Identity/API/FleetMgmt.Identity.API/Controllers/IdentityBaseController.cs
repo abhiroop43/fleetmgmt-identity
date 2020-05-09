@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace FleetMgmt.Identity.API.Controllers
 {
-    // [Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class IdentityBaseController<T> : ControllerBase
     {

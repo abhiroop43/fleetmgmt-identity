@@ -33,7 +33,6 @@ namespace FleetMgmt.Identity.Services
             IConfiguration config,
             ITokenControllerRepository tokenControllerRepository,
             ITransactionalUnitOfWork transactionalUnitOfWork,
-            EncryptData encryptData,
             IUsersGroupsRepository usersGroupsRepository,
             IGroupsRepository groupsRepository,
             IGroupsOuRepository groupsOuRepository,
@@ -43,7 +42,7 @@ namespace FleetMgmt.Identity.Services
             _config = config;
             _tokenControllerRepository = tokenControllerRepository;
             _transactionalUnitOfWork = transactionalUnitOfWork;
-            _encryptData = encryptData;
+            _encryptData = new EncryptData();
             _usersGroupsRepository = usersGroupsRepository;
             _groupsRepository = groupsRepository;
             _groupsOuRepository = groupsOuRepository;

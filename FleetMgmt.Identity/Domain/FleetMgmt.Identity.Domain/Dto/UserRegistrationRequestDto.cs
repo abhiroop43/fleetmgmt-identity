@@ -28,9 +28,9 @@ namespace FleetMgmt.Identity.Domain.Dto
         
         public bool Active { get; set; }
 
-        public string Company { get; set; }
-        
-        public string Otp { get; set; }
+        // public string Company { get; set; }
+        //
+        // public string Otp { get; set; }
 
         public bool? TermsAccepted { get; set; }
     }

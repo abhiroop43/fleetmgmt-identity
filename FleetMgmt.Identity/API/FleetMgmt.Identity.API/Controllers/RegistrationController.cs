@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 using FleetMgmt.Identity.Domain.Dto;
 using FleetMgmt.Identity.Infrastructure.Exceptions;
 using FleetMgmt.Identity.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace FleetMgmt.Identity.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class RegistrationController : IdentityBaseController<RegistrationController>
     {
         private readonly IRegistrationService _registrationService;
@@ -19,7 +20,9 @@ namespace FleetMgmt.Identity.API.Controllers
             _registrationService = registrationService;
         }
 
+        [AllowAnonymous]
         [HttpPost]
+        // [Route("RegisterUser")]
         public async Task<IActionResult> Post(UserRegistrationRequestDto request)
         {
             ServiceResponse result = null;
