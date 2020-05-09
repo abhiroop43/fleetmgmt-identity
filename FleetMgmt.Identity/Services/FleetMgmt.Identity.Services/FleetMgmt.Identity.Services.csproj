@@ -12,6 +12,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\FleetMgmt.Identity.Domain\FleetMgmt.Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\Service Interfaces\FleetMgmt.Identity.Interfaces\FleetMgmt.Identity.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions" />
   </ItemGroup>
 
 </Project>

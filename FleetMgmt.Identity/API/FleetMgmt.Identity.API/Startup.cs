@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text;
+using AutoMapper;
+using FleetMgmt.Identity.Domain.AutoMapper;
 using FleetMgmt.Identity.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -70,6 +72,9 @@ namespace FleetMgmt.Identity.API
 
 
             DependencyConfig.DependencyConfig dependency = new DependencyConfig.DependencyConfig(services, Configuration);
+            
+            services.AddAutoMapper(typeof(Mapping));
+            
             dependency.ConfigureServices();
         }
 

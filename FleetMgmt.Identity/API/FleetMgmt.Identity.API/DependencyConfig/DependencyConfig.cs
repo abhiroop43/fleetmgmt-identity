@@ -48,6 +48,7 @@ namespace FleetMgmt.Identity.API.DependencyConfig
         {
             _services.AddScoped(typeof(IRepository<>), typeof(RepositoryEF<>));
             _services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            _services.AddScoped(typeof(ITransactionalUnitOfWork), typeof(TransactionalUnitOfWork));
         }
 
         private void InjectValidators()
