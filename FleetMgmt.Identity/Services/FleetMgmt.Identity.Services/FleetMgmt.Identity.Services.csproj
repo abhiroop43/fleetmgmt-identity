@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\FleetMgmt.Identity.Domain\FleetMgmt.Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\FleetMgmt.Identity.Infrastructure\FleetMgmt.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\FleetMgmt.Identity.TokenGenerator\FleetMgmt.Identity.TokenGenerator.csproj" />
     <ProjectReference Include="..\..\Service Interfaces\FleetMgmt.Identity.Interfaces\FleetMgmt.Identity.Interfaces.csproj" />
   </ItemGroup>
 

@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api Gateway", "Api Gateway"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetMgmt.Identity.Gateway", "Api Gateway\FleetMgmt.Identity.Gateway\FleetMgmt.Identity.Gateway.csproj", "{25FC47AF-8A53-422B-89EF-5F48DE72784F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetMgmt.Identity.TokenGenerator", "Infrastructure\FleetMgmt.Identity.TokenGenerator\FleetMgmt.Identity.TokenGenerator.csproj", "{8340A038-78B3-4861-B2B5-575D071354B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{25FC47AF-8A53-422B-89EF-5F48DE72784F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25FC47AF-8A53-422B-89EF-5F48DE72784F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25FC47AF-8A53-422B-89EF-5F48DE72784F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8340A038-78B3-4861-B2B5-575D071354B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8340A038-78B3-4861-B2B5-575D071354B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8340A038-78B3-4861-B2B5-575D071354B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8340A038-78B3-4861-B2B5-575D071354B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{3D971726-A43B-4E8A-8810-41E35593B64F} = {A72BBB00-C8EA-4AF6-84A8-ABB3C8447E1E}
 		{1AF8FCF9-B712-4A1D-A0F8-91B30E259583} = {B14D3A34-7E2F-48C4-8EBA-BEC23B298675}
 		{25FC47AF-8A53-422B-89EF-5F48DE72784F} = {42316A2B-329D-4119-BAF9-EA716DA4F14B}
+		{8340A038-78B3-4861-B2B5-575D071354B6} = {82A1203B-6A2A-4008-B5A1-1E40DD124317}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {612829F6-A023-4179-BAF7-8E028349A862}

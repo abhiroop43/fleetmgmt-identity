@@ -44,3 +44,9 @@ FleetMgmt.Identity/.idea/.idea.FleetMgmt.Identity/riderModule.iml
 FleetMgmt.Identity/.idea/.idea.FleetMgmt.Identity/.idea/encodings.xml
 
 FleetMgmt.Identity/.idea/.idea.FleetMgmt.Identity/.idea/
+
+FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.TokenGenerator/bin/Debug/netcoreapp3.1/
+
+FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.TokenGenerator/obj/Debug/netcoreapp3.1/
+
+FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.TokenGenerator/obj/
