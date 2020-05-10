@@ -31,5 +31,8 @@ namespace FleetMgmt.Identity.Domain.Dto
         public List<CompanyResponseDto> Organizations { get; set; }
         public bool UserActive { get; set; }
         public bool IsUserAuthenticated { get; set; }
+
+        public string Token { get; set; }
+        public string RefreshToken { get; set; }
     }
 }

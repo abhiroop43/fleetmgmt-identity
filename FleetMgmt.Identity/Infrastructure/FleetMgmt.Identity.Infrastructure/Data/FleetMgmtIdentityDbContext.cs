@@ -57,6 +57,11 @@ namespace FleetMgmt.Identity.Infrastructure.Data
 
             });
 
+            // modelBuilder.Entity<IM_COMPANY>()
+            //     .HasMany(e => e.ImOus)
+            //     .WithOne(c => c.Company)
+            //     .HasForeignKey(f => f.COMPANY_ID);
+
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 if (entityType.ClrType.IsSubclassOf(typeof(BaseEntity)))

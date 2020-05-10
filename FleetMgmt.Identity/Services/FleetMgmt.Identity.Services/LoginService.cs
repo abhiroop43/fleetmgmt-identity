@@ -46,6 +46,7 @@ namespace FleetMgmt.Identity.Services
             _usersGroupsRepository = usersGroupsRepository;
             _groupsRepository = groupsRepository;
             _groupsOuRepository = groupsOuRepository;
+            _companyRepository = companyRepository;
         }
         
         public async Task<ServiceResponse> LoginUser(LoginRequestDto loginRequest)
@@ -60,22 +61,27 @@ namespace FleetMgmt.Identity.Services
             if (data.UserGroup != null && data.UserGroup.Contains(longTokenExpiryRole) &&
                 isLongTokenExpiryChkEnabled == true)
             {
-                var tokenVal = GenerateLongDurationToken(data);
+                var tokenVal = await GenerateLongDurationToken(data);
 
-                var refreshTokenVal = GenerateRefreshToken(data);
+                var refreshTokenVal = await GenerateRefreshToken(data);
 
+                data.Token = tokenVal;
+                data.RefreshToken = refreshTokenVal;
+                
                 response.Data = data;
                 response.Success = true;
                 response.Msg = "User logged in successfully";
 
                 return await Task.Run(() => response);
             }
-
             else
             {
-                var tokenVal = GenerateToken(data);
+                var tokenVal = await GenerateToken(data);
 
-                var refreshTokenVal = GenerateRefreshToken(data);
+                var refreshTokenVal = await GenerateRefreshToken(data);
+                
+                data.Token = tokenVal;
+                data.RefreshToken = refreshTokenVal;
 
                 response.Data = data;
                 response.Success = true;
@@ -88,7 +94,7 @@ namespace FleetMgmt.Identity.Services
         /// <summary>
         /// Method added to provide long Token duration
         /// </summary>
-        /// <param name="loginRequest"></param>
+        /// <param name="loginResponse"></param>
         /// <returns></returns>
         private async Task<string> GenerateLongDurationToken(LoginResponseDto loginResponse)
         {
@@ -119,7 +125,7 @@ namespace FleetMgmt.Identity.Services
             var groupInfo = loginResponse.UserGroup;
             string[] group = loginResponse.UserGroup;
             var fullName = $"{loginResponse.FirstName} {loginResponse.LastName}";
-            var appKey = _config["ConfigKey:AppKey"];
+            var appKey = _config["Audience:Secret"];
 
             var refreshTokenString = $"{loginResponse.UserName}|{fullName}|{appKey}";
             var md5Hash = EncryptData(refreshTokenString);
@@ -161,7 +167,8 @@ namespace FleetMgmt.Identity.Services
                 VALUE = userTokenData.TokenValue,
                 ISTOKENVALID = true,
                 CreatedBy = userTokenData.CreatedBy,
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                ID = Guid.NewGuid().ToString()
             };
 
             _transactionalUnitOfWork.SetIsActive(true);
@@ -190,8 +197,10 @@ namespace FleetMgmt.Identity.Services
                 x.PASSWORD == request.Password);
             if (getUser == null)
                 throw new BadRequestException("Either username or password you have entered is incorrect!");
+            
+            loginResponse.UserName = getUser.USERNAME;
 
-            bool.TryParse(_config["AuthendicationMode:IsValidateOnlyLogin"], out var isValidateOnlyLogin);
+            bool.TryParse(_config["AuthenticationMode:IsValidateOnlyLogin"], out var isValidateOnlyLogin);
             if (isValidateOnlyLogin)
             {
                 loginResponse.IsUserAuthenticated = true;
@@ -216,23 +225,18 @@ namespace FleetMgmt.Identity.Services
 
             if (!userGroups.Any())
                 throw new UnauthorizedAccessException("Not authorized to access");
-
-            // var organizationUnits = _groupOUService.GetPorts(userGroups);
-
+            
             var orgUnitQuery = _groupsOuRepository.GetAllReadOnly(
-                port => userGroups.Contains(port.Group.NAME) && port.ACTIVE, null, null, null, "Group", "Ou");
+                port => userGroups.Contains(port.Group.NAME) && port.ACTIVE, null, null, null, nameof(IM_GROUPS_OU.Group), nameof(IM_GROUPS_OU.Ou));
+            
             var orgUnitList = orgUnitQuery.Select(p => new OUResponseDto {Code = p.Ou.CODE, Name = p.Ou.NAME})
                 .Distinct().ToList();
-
-            // var userOrganization =
-            //     await _companyService.GetOrganizationsByUser(orgUnitList.Select(a => a.Code).ToList());
-
+            
             var userOrganization = _companyRepository
                 .GetAllReadOnly(
-                    item => item.ImOus.Any(a => orgUnitList.Select(b => b.Code).ToList().Contains(a.CODE)) &&
-                            item.ACTIVE == true, null, null, null, "ImOu")
+                    item => item.ImOus.Any(a => orgUnitList.Select(b => b.Code).Contains(a.CODE)) &&
+                            item.ACTIVE == true, null, null, null, nameof(IM_COMPANY.ImOus))
                 .Select(a => new CompanyResponseDto {Name = a.NAME, Code = a.DOMAIN}).ToList();
-
 
             loginResponse.IsUserAuthenticated = userGroups.Any() ? true : false;
             loginResponse.UserGroup = userGroups.ToArray();
