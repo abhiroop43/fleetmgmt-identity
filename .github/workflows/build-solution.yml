@@ -17,7 +17,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+    - name:  Change to working directory
+      run: cd FleetMgmt.Identity/
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore FleetMgmt.Identity.sln
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj  --configuration Release --no-restore | dotnet build Api\ Gateway/FleetMgmt.Identity.Gateway/FleetMgmt.Identity.Gateway.csproj --configuration Release --no-restore
