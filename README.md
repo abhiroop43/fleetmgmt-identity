@@ -8,6 +8,7 @@ An Identity Management Project using .NET Core and JWT. Implemented using DDD pr
  - Login JWT generation
  - Email Notifications
  - Swagger UI
+ - API Gateway using Ocelot
  
 # Build and Run
 
@@ -17,4 +18,3 @@ The application uses SQL server. Please configure the connection strings in apps
  - Implement Refresh Token
  - Fluent Validations
  - User Password Reset
- - API Gateway

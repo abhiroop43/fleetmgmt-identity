@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 
 namespace FleetMgmt.Identity.Gateway
 {
@@ -61,6 +63,7 @@ namespace FleetMgmt.Identity.Gateway
                     x.TokenValidationParameters = tokenValidationParameters;
                 });
 
+            services.AddOcelot(Configuration);
 
         }
 
@@ -81,9 +84,12 @@ namespace FleetMgmt.Identity.Gateway
             // {
             //     endpoints.MapControllerRoute("default", "api/{controller}/{id}");
             // });
-
+            app.UseRouting();
             app.UseAuthentication();
             app.UseCors("AllowAllOrigin");
+            
+            app.UseOcelot().Wait();
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
