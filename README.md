@@ -1,4 +1,4 @@
-![.NET Core](https://github.com/abhiroop43/fleetmgmt-identity/workflows/.NET%20Core/badge.svg)
+![Build & Deploy](https://github.com/abhiroop43/fleetmgmt-identity/workflows/Build%20&%20Deploy/badge.svg)
 
 # Introduction 
 An Identity Management Project using .NET Core and JWT. Implemented using DDD principles (https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice)
