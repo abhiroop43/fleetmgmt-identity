@@ -22,12 +22,38 @@ jobs:
     - name: Build
       run: dotnet build FleetMgmt.Identity/API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj  --configuration Release --no-restore | dotnet build FleetMgmt.Identity/Api\ Gateway/FleetMgmt.Identity.Gateway/FleetMgmt.Identity.Gateway.csproj --configuration Release --no-restore
 
-    - name: Publish Artifacts
+    - name: Publish API
       run: |
         dotnet publish FleetMgmt.Identity/API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj -c Release -o identity-api
+        
+    - name: Publish Gateway
+      run: |
+        dotnet publish FleetMgmt.Identity/Api\ Gateway/FleetMgmt.Identity.Gateway/FleetMgmt.Identity.Gateway.csproj -c Release -o identity-gateway
+        
+     #substitute production appsettings entries to appsettings json file
+    - name: Gateway App Settings Variable Substitution
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: './identity-gateway/appsettings.json'
+      env:
+        ReRoutes__0.DownstreamScheme: "https"
+        ReRoutes__0.DownstreamHostAndPorts__0.Host: "fleetmgmt-identity.azurewebsites.net"
+        ReRoutes__0.DownstreamHostAndPorts__0.Port: "80"
+        ReRoutes__1.DownstreamScheme: "https"
+        ReRoutes__1.DownstreamHostAndPorts__0.Host: "fleetmgmt-identity.azurewebsites.net"
+        ReRoutes__1.DownstreamHostAndPorts__0.Port: "80"
+        ReRoutes__2.DownstreamScheme: "https"
+        ReRoutes__2.DownstreamHostAndPorts__0.Host: "fleetmgmt-identity.azurewebsites.net"
+        ReRoutes__2.DownstreamHostAndPorts__0.Port: "80"
 
     - uses: azure/webapps-deploy@v1
       with:
         app-name: fleetmgmt-identity-api
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}
         package: './identity-api'
+        
+    - uses: azure/webapps-deploy@v1
+      with:
+        app-name: fleetmgmt-identity-gateway
+        publish-profile: ${{ secrets.azureGatewayPublishProfile }}
+        package: './identity-gateway'
