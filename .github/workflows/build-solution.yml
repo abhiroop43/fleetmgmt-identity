@@ -20,4 +20,4 @@ jobs:
     - name: Install dependencies
       run: dotnet restore FleetMgmt.Identity/FleetMgmt.Identity.sln
     - name: Build
-      run: dotnet build FleetMgmt.Identity/API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj  --configuration Release --no-restore | dotnet build Api\ Gateway/FleetMgmt.Identity.Gateway/FleetMgmt.Identity.Gateway.csproj --configuration Release --no-restore
+      run: dotnet build FleetMgmt.Identity/API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj  --configuration Release --no-restore | dotnet build FleetMgmt.Identity/Api\ Gateway/FleetMgmt.Identity.Gateway/FleetMgmt.Identity.Gateway.csproj --configuration Release --no-restore
