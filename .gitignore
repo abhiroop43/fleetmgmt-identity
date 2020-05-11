@@ -50,3 +50,5 @@ FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.TokenGenerator/bin/Debug/ne
 FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.TokenGenerator/obj/Debug/netcoreapp3.1/
 
 FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.TokenGenerator/obj/
+
+FleetMgmt.Identity/API/FleetMgmt.Identity.API/appsettings.Development.json

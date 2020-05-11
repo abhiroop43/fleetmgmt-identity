@@ -5,9 +5,11 @@ using AutoMapper;
 using FleetMgmt.Identity.Domain.Dto;
 using FleetMgmt.Identity.Domain.Entities;
 using FleetMgmt.Identity.Domain.Interfaces;
+using FleetMgmt.Identity.Infrastructure.Data;
 using FleetMgmt.Identity.Infrastructure.Exceptions;
 using FleetMgmt.Identity.Interfaces;
 using FleetMgmt.Identity.Services.Helper;
+using Microsoft.Extensions.Configuration;
 
 namespace FleetMgmt.Identity.Services
 {
@@ -19,12 +21,14 @@ namespace FleetMgmt.Identity.Services
         private readonly ITransactionalUnitOfWork _transactionalUnitOfWork;
         private readonly EncryptData _encryptData;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
         public RegistrationService(IUserRepository userRepository,
             ITransactionalUnitOfWork transactionalUnitOfWork,
             IMapper mapper,
             IGroupsRepository groupsRepository,
-            IUsersGroupsRepository usersGroupsRepository)
+            IUsersGroupsRepository usersGroupsRepository,
+            IConfiguration configuration)
         {
             _userRepository = userRepository;
             _transactionalUnitOfWork = transactionalUnitOfWork;
@@ -32,6 +36,7 @@ namespace FleetMgmt.Identity.Services
             _mapper = mapper;
             _groupsRepository = groupsRepository;
             _usersGroupsRepository = usersGroupsRepository;
+            _configuration = configuration;
         }
 
         public async Task<ServiceResponse> UserRegistration(UserRegistrationRequestDto request)
@@ -96,6 +101,20 @@ namespace FleetMgmt.Identity.Services
                 response.Success = false;
                 response.Msg = "Failed to register user";
             }
+            
+            var recipients = new List<EmailRecipientDto>
+            {
+                new EmailRecipientDto
+                {
+                    RecipientName = $"{user.FIRSTNAME} {user.LASTNAME}",
+                    RecipientEmailAddress = user.USEREMAIL
+                }
+            };
+            
+            // TODO: Create Email Template in DB //
+
+            await EmailNotificationHelper.SendEmailNotification(_configuration.GetSection("SendGridAPIKey").Value,
+                "User Registered successfully", "User Registered successfully", "", recipients);
 
             return await Task.Run(() => response);
         }
