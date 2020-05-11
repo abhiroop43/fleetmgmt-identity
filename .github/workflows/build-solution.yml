@@ -18,6 +18,6 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore FleetMgmt.Identity.sln
+      run: dotnet restore FleetMgmt.Identity/FleetMgmt.Identity.sln
     - name: Build
       run: dotnet build FleetMgmt.Identity/API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj  --configuration Release --no-restore | dotnet build Api\ Gateway/FleetMgmt.Identity.Gateway/FleetMgmt.Identity.Gateway.csproj --configuration Release --no-restore
