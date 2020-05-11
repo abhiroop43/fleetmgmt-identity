@@ -38,13 +38,13 @@ jobs:
       env:
         ReRoutes.0.DownstreamScheme: "https"
         ReRoutes.0.DownstreamHostAndPorts.0.Host: "fleetmgmt-identity.azurewebsites.net"
-        ReRoutes.0.DownstreamHostAndPorts.0.Port: "80"
+        ReRoutes.0.DownstreamHostAndPorts.0.Port: "443"
         ReRoutes.1.DownstreamScheme: "https"
         ReRoutes.1.DownstreamHostAndPorts.0.Host: "fleetmgmt-identity.azurewebsites.net"
-        ReRoutes.1.DownstreamHostAndPorts.0.Port: "80"
+        ReRoutes.1.DownstreamHostAndPorts.0.Port: "443"
         ReRoutes.2.DownstreamScheme: "https"
         ReRoutes.2.DownstreamHostAndPorts.0.Host: "fleetmgmt-identity.azurewebsites.net"
-        ReRoutes.2.DownstreamHostAndPorts.0.Port: "80"
+        ReRoutes.2.DownstreamHostAndPorts.0.Port: "443"
 
     - uses: azure/webapps-deploy@v1
       with:
