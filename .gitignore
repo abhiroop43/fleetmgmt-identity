@@ -54,3 +54,5 @@ FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.TokenGenerator/obj/
 FleetMgmt.Identity/API/FleetMgmt.Identity.API/appsettings.Development.json
 
 FleetMgmt.Identity/Api Gateway/FleetMgmt.Identity.Gateway/appsettings.Development.json
+
+FleetMgmt.Identity/Infrastructure/FleetMgmt.Identity.TokenGenerator/bin/Release/netcoreapp3.1/
