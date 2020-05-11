@@ -36,15 +36,15 @@ jobs:
       with:
         files: './identity-gateway/appsettings.json'
       env:
-        ReRoutes__0.DownstreamScheme: "https"
-        ReRoutes__0.DownstreamHostAndPorts__0.Host: "fleetmgmt-identity.azurewebsites.net"
-        ReRoutes__0.DownstreamHostAndPorts__0.Port: "80"
-        ReRoutes__1.DownstreamScheme: "https"
-        ReRoutes__1.DownstreamHostAndPorts__0.Host: "fleetmgmt-identity.azurewebsites.net"
-        ReRoutes__1.DownstreamHostAndPorts__0.Port: "80"
-        ReRoutes__2.DownstreamScheme: "https"
-        ReRoutes__2.DownstreamHostAndPorts__0.Host: "fleetmgmt-identity.azurewebsites.net"
-        ReRoutes__2.DownstreamHostAndPorts__0.Port: "80"
+        ReRoutes.0.DownstreamScheme: "https"
+        ReRoutes.0.DownstreamHostAndPorts.0.Host: "fleetmgmt-identity.azurewebsites.net"
+        ReRoutes.0.DownstreamHostAndPorts.0.Port: "80"
+        ReRoutes.1.DownstreamScheme: "https"
+        ReRoutes.1.DownstreamHostAndPorts.0.Host: "fleetmgmt-identity.azurewebsites.net"
+        ReRoutes.1.DownstreamHostAndPorts.0.Port: "80"
+        ReRoutes.2.DownstreamScheme: "https"
+        ReRoutes.2.DownstreamHostAndPorts.0.Host: "fleetmgmt-identity.azurewebsites.net"
+        ReRoutes.2.DownstreamHostAndPorts.0.Port: "80"
 
     - uses: azure/webapps-deploy@v1
       with:
