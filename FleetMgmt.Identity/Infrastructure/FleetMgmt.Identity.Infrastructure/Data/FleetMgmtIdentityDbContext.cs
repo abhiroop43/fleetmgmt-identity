@@ -20,6 +20,7 @@ namespace FleetMgmt.Identity.Infrastructure.Data
         public virtual DbSet<IM_USERS_GROUPS> IM_USERS_GROUPS { get; set; }
         public virtual DbSet<IM_USER_METADATA> IM_USER_METADATA { get; set; }
         public virtual DbSet<IM_TOKENS_CONTROLLER> IM_TOKENS_CONTROLLER { get; set; }
+        public virtual DbSet<IM_TEMPLATE_SETTING> IM_TEMPLATE_SETTING { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

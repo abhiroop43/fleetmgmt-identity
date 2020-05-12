@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using AutoMapper;
 using FleetMgmt.Identity.Domain.AutoMapper;
+using FleetMgmt.Identity.Domain.Dto;
 using FleetMgmt.Identity.Infrastructure.Data;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +32,23 @@ namespace FleetMgmt.Identity.API
         public void ConfigureServices(IServiceCollection services)
         {
             // services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = (context) =>
+                {
+                    var errors = context.ModelState.Values.SelectMany(x => x.Errors.Select(e => new ErrorMessage() { Error = e.ErrorMessage })).ToList();
+
+                    var result = new ServiceResponse
+                    {
+                        Success = false,
+                        Msg = "Validation Errors",
+                        ErrorList = errors
+                    };
+
+                    return new BadRequestObjectResult(result);
+                };
+            });
 
             var audienceConfig = Configuration.GetSection("Audience");
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(audienceConfig["Secret"]));
@@ -78,11 +99,11 @@ namespace FleetMgmt.Identity.API
             
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fleet Management API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fleet Management Identity API", Version = "v1" });
             });
             
             dependency.ConfigureServices();
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation();
             // services.AddMvc();
         }
 
@@ -109,7 +130,7 @@ namespace FleetMgmt.Identity.API
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fleet Management API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fleet Management Identity API V1");
             });
 
 

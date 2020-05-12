@@ -18,6 +18,7 @@ namespace FleetMgmt.Identity.Services
         private readonly IUserRepository _userRepository;
         private readonly IUsersGroupsRepository _usersGroupsRepository;
         private readonly IGroupsRepository _groupsRepository;
+        private readonly ITemplateSettingRepository _templateSettingRepository;
         private readonly ITransactionalUnitOfWork _transactionalUnitOfWork;
         private readonly EncryptData _encryptData;
         private readonly IMapper _mapper;
@@ -28,6 +29,7 @@ namespace FleetMgmt.Identity.Services
             IMapper mapper,
             IGroupsRepository groupsRepository,
             IUsersGroupsRepository usersGroupsRepository,
+            ITemplateSettingRepository templateSettingRepository,
             IConfiguration configuration)
         {
             _userRepository = userRepository;
@@ -37,6 +39,7 @@ namespace FleetMgmt.Identity.Services
             _groupsRepository = groupsRepository;
             _usersGroupsRepository = usersGroupsRepository;
             _configuration = configuration;
+            _templateSettingRepository = templateSettingRepository;
         }
 
         public async Task<ServiceResponse> UserRegistration(UserRegistrationRequestDto request)
@@ -110,11 +113,26 @@ namespace FleetMgmt.Identity.Services
                     RecipientEmailAddress = user.USEREMAIL
                 }
             };
-            
-            // TODO: Create Email Template in DB //
 
-            await EmailNotificationHelper.SendEmailNotification(_configuration.GetSection("SendGridAPIKey").Value,
-                "User Registered successfully", "User Registered successfully", "", recipients);
+            var newUserRegistrationEmailTemplate =
+                await _templateSettingRepository.GetReadOnlyAsync(x => x.KEY == "NEW_USER_TEMPLATE");
+
+            if (newUserRegistrationEmailTemplate != null)
+            {
+                var emailTemplateString = newUserRegistrationEmailTemplate.VALUE;
+
+                if (!string.IsNullOrEmpty(emailTemplateString))
+                {
+                    var emailHtmlBody = emailTemplateString.Replace("{username}", $"{user.FIRSTNAME} {user.LASTNAME}")
+                        // TODO: get application ui url from appsettings
+                        .Replace("{link}", "https://www.google.com");
+
+                    await EmailNotificationHelper.SendEmailNotification(_configuration.GetSection("SendGridAPIKey").Value,
+                        newUserRegistrationEmailTemplate.NAME, emailHtmlBody, "", recipients);
+                }
+            }
+
+            
 
             return await Task.Run(() => response);
         }

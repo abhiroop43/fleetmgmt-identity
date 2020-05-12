@@ -1,7 +1,10 @@
-﻿using FleetMgmt.Identity.Domain.Interfaces;
+﻿using FleetMgmt.Identity.Domain.Dto;
+using FleetMgmt.Identity.Domain.Interfaces;
+using FleetMgmt.Identity.Domain.Validators;
 using FleetMgmt.Identity.Infrastructure.Repositories;
 using FleetMgmt.Identity.Interfaces;
 using FleetMgmt.Identity.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,6 +48,7 @@ namespace FleetMgmt.Identity.API.DependencyConfig
             _services.AddScoped<IUserMetadataRepository, UserMetadataRepository>();
             _services.AddScoped<IUserRepository, UserRepository>();
             _services.AddScoped<IUsersGroupsRepository, UsersGroupsRepository>();
+            _services.AddScoped<ITemplateSettingRepository, TemplateSettingRepository>();
         }
 
         private void InjectUtilities()
@@ -56,7 +60,7 @@ namespace FleetMgmt.Identity.API.DependencyConfig
 
         private void InjectValidators()
         {
-
+            _services.AddScoped<IValidator<UserRegistrationRequestDto>, UserRegistrationRequestValidator>();
         }
     }
 }

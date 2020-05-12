@@ -47,7 +47,7 @@ public static class Utility
             return CultureInfo.CurrentCulture.TextInfo.ToUpper(input?.ToLower() ?? string.Empty);
         }
         /// <summary>
-        /// MEthod added to lower the string
+        /// Method added to lower the string
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
