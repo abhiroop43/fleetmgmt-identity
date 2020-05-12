@@ -70,6 +70,7 @@
     <Build Include="Tables\IM_USERS.sql" />
     <Build Include="Tables\IM_USERS_GROUPS.sql" />
     <Build Include="Schema\IM.sql" />
+    <Build Include="Tables\IM_TEMPLATE_SETTING.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
