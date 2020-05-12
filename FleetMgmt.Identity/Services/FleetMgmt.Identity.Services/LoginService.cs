@@ -65,6 +65,8 @@ namespace FleetMgmt.Identity.Services
 
                 var refreshTokenVal = await GenerateRefreshToken(data);
 
+                data.Expiry = DateTime.Now.AddYears(int.Parse(expiryYearsVal));
+
                 data.Token = tokenVal;
                 data.RefreshToken = refreshTokenVal;
                 
@@ -79,7 +81,8 @@ namespace FleetMgmt.Identity.Services
                 var tokenVal = await GenerateToken(data);
 
                 var refreshTokenVal = await GenerateRefreshToken(data);
-                
+                data.Expiry = DateTime.Now.AddMinutes(int.Parse(expiryMinutesVal));
+
                 data.Token = tokenVal;
                 data.RefreshToken = refreshTokenVal;
 

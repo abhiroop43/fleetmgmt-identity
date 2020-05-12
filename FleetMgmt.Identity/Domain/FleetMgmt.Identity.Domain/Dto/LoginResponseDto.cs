@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace FleetMgmt.Identity.Domain.Dto
@@ -34,5 +35,6 @@ namespace FleetMgmt.Identity.Domain.Dto
 
         public string Token { get; set; }
         public string RefreshToken { get; set; }
+        public DateTime Expiry { get; set; }
     }
 }
