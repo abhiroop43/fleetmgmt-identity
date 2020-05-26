@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Combined API &amp; Gateway" type="CompoundRunConfigurationType">
+    <toRun name="FleetMgmt.Identity.API" type="LaunchSettings" />
+    <toRun name="FleetMgmt.Identity.Gateway" type="LaunchSettings" />
+    <method v="2" />
+  </configuration>
+</component>

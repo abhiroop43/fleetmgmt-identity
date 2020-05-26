@@ -74,16 +74,7 @@ namespace FleetMgmt.Identity.Gateway
             {
                 app.UseDeveloperExceptionPage();
             }
-            // else
-            // {
-            //     app.UseHsts();
-            // }
 
-            // app.UseRouting();
-            // app.UseEndpoints(endpoints =>
-            // {
-            //     endpoints.MapControllerRoute("default", "api/{controller}/{id}");
-            // });
             app.UseRouting();
             app.UseAuthentication();
             app.UseCors("AllowAllOrigin");
