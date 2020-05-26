@@ -19,41 +19,9 @@ jobs:
         dotnet-version: 3.1.101
     - name: Install dependencies
       run: dotnet restore FleetMgmt.Identity/FleetMgmt.Identity.sln
-    - name: Build
-      run: dotnet build FleetMgmt.Identity/API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj  --configuration Release --no-restore | dotnet build FleetMgmt.Identity/Api\ Gateway/FleetMgmt.Identity.Gateway/FleetMgmt.Identity.Gateway.csproj --configuration Release --no-restore
+    - name: Build API
+      run: dotnet build FleetMgmt.Identity/API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj  --configuration Release --no-restore
+    - name: Build Gateway
+      run: dotnet build FleetMgmt.Identity/Api\ Gateway/FleetMgmt.Identity.Gateway/FleetMgmt.Identity.Gateway.csproj --configuration Release --no-restore
+        
 
-    - name: Publish API
-      run: |
-        dotnet publish FleetMgmt.Identity/API/FleetMgmt.Identity.API/FleetMgmt.Identity.API.csproj -c Release -o identity-api
-        
-    - name: Publish Gateway
-      run: |
-        dotnet publish FleetMgmt.Identity/Api\ Gateway/FleetMgmt.Identity.Gateway/FleetMgmt.Identity.Gateway.csproj -c Release -o identity-gateway
-        
-     #substitute production appsettings entries to appsettings json file
-    - name: Gateway App Settings Variable Substitution
-      uses: microsoft/variable-substitution@v1
-      with:
-        files: './identity-gateway/appsettings.json'
-      env:
-        ReRoutes.0.DownstreamScheme: ${{ secrets.apiProtocol }}
-        ReRoutes.0.DownstreamHostAndPorts.0.Host: ${{ secrets.apiBaseUrl }}
-        ReRoutes.0.DownstreamHostAndPorts.0.Port: ${{ secrets. apiPort }}
-        ReRoutes.1.DownstreamScheme: ${{ secrets.apiProtocol }}
-        ReRoutes.1.DownstreamHostAndPorts.0.Host: ${{ secrets.apiBaseUrl }}
-        ReRoutes.1.DownstreamHostAndPorts.0.Port: ${{ secrets. apiPort }}
-        ReRoutes.2.DownstreamScheme: ${{ secrets.apiProtocol }}
-        ReRoutes.2.DownstreamHostAndPorts.0.Host: ${{ secrets.apiBaseUrl }}
-        ReRoutes.2.DownstreamHostAndPorts.0.Port: ${{ secrets. apiPort }}
-
-    - uses: azure/webapps-deploy@v1
-      with:
-        app-name: fleetmgmt-identity-api
-        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-        package: './identity-api'
-        
-    - uses: azure/webapps-deploy@v1
-      with:
-        app-name: fleetmgmt-identity-gateway
-        publish-profile: ${{ secrets.azureGatewayPublishProfile }}
-        package: './identity-gateway'
